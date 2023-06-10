@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>EDMS - DSM</title>
+    <base href="/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:ital,wght@0,400;1,200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- <link href="/css/app.css?v=1.1" rel="stylesheet" />
+    <link href="/css/app.min.css?v=1.1" rel="stylesheet" /> -->
+    <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
+
+    <link href="manifest.json" rel="manifest" />
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+    <link href="https://fonts.googleapis.com/css?family=Helvetica Neue" type="text/css">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6gF62EShSDZ8yD2XX7hEGhLeQ2JmqdQ8&v=3"></script>
+</head>
+
+<body id="TVAAppMainBody">
+
+    <!-- loading indicator -->
+    <div id="tva-loading" class="tva-loading" style="position: fixed; top: 0;">
+        <div class="tva-loading-content"
+             style="background-color: var(--mud-palette-white) !important; visibility: visible;">
+            <div class="mud-progress-circular mud-primary-text mud-progress-medium mud-progress-indeterminate"
+                 role="progressbar" aria-valuenow="0">
+                <svg class="mud-progress-circular-svg" viewBox="22 22 44 44">
+                    <circle class="mud-progress-circular-circle mud-progress-indeterminate" cx="44" cy="44" r="20"
+                            fill="none" stroke-width="3">
+                    </circle>
+                </svg>
+            </div>
+            <span>Loading...</span>
+        </div>
+    </div>
+
+    <!-- app -->
+    <div id="app">
+        <style>
+
+            @media only screen and (max-width: 600px) {
+                div.content li {
+                    font-size: 0.8em;
+                    margin-left: 10px;
+                    margin-right: 10px;
+                }
+            }
+
+
+            @media only screen and (max-width: 768px) {
+                /* For mobile phones: */
+                [class*="col-"] {
+                    width: 100%;
+                }
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            ::selection {
+                background-color: salmon;
+                color: white;
+            }
+
+            .parallax > use {
+                animation: move-forever 12s linear infinite;
+            }
+
+            :nth-child(1) {
+                animation-delay: -2s;
+            }
+
+            :nth-child(2) {
+                animation-delay: -2s;
+                animation-duration: 5s
+            }
+
+            :nth-child(3) {
+                animation-delay: -4s;
+                animation-duration: 3s
+            }
+
+            @keyframes move-forever {
+                0% {
+                    transform: translate(-90px, 0%)
+                }
+
+                100% {
+                    transform: translate(85px, 0%)
+                }
+            }
+
+            .content {
+                background-color: #2c91994d;
+                color: #08497f;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 1.2em;
+                font-weight: 400;
+                height: 100vh;
+                min-height: 75vh;
+                text-align: left;
+                width: 100vw;
+            }
+
+            /*prevent many large-by-comparison ripples by shrinking the height*/
+
+            @media (max-width: 50em) {
+                .content h1 {
+                    font-size: x-large
+                }
+
+                .editorial {
+                    height: 18vw;
+                }
+            }
+
+            h1 {
+                outline: none
+            }
+
+            body {
+                background-color: rgb(255, 255, 255)
+            }
+
+            @keyframes loading {
+                0% {
+                    max-width: 100%;
+                }
+            }
+
+            #slideset > * {
+                animation: 15s autoplay infinite linear;
+                left: 5%;
+                opacity: 0;
+                position: absolute;
+                top: 30%;
+            }
+
+            @keyframes autoplay {
+                0% {
+                    opacity: 0;
+                }
+
+                4% {
+                    opacity: 1;
+                }
+
+                33.33% {
+                    opacity: 1;
+                }
+
+                37.33% {
+                    opacity: 0;
+                }
+
+                100% {
+                    opacity: 0;
+                }
+            }
+
+            #slideset > *:nth-child(1) {
+                animation-delay: 0s;
+            }
+
+            #slideset > *:nth-child(2) {
+                animation-delay: 5s;
+            }
+
+            #slideset > *:nth-child(3) {
+                animation-delay: 10s;
+            }
+
+            .container {
+                display: flex;
+                position: absolute;
+                top: 95%;
+            }
+
+            .loading {
+                display: flex;
+                font-size: 1em;
+                font-weight: 300;
+                position: absolute;
+                top: 45%;
+            }
+
+            .dash {
+                background: hsl(0, 0%, 100%);
+                border-radius: 2px;
+                box-shadow: 0 0 10px 0 #fefefe;
+                height: 5px;
+                margin: 0 10px;
+                width: 20px;
+            }
+
+            .uno {
+                animation: spin 3s linear infinite;
+                margin-right: -18px;
+                transform-origin: center left;
+            }
+
+            .dos {
+                animation: spin2 3s linear infinite;
+                animation-delay: .2s;
+                transform-origin: center right;
+            }
+
+            .tres {
+                animation: spin3 3s linear infinite;
+                animation-delay: .3s;
+                transform-origin: center right;
+            }
+
+            .cuatro {
+                animation: spin4 3s linear infinite;
+                animation-delay: .4s;
+                transform-origin: center right;
+            }
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                25% {
+                    transform: rotate(360deg);
+                }
+
+                30% {
+                    transform: rotate(370deg);
+                }
+
+                35% {
+                    transform: rotate(360deg);
+                }
+
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            @keyframes spin2 {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                20% {
+                    transform: rotate(0deg);
+                }
+
+                30% {
+                    transform: rotate(-180deg);
+                }
+
+                35% {
+                    transform: rotate(-190deg);
+                }
+
+                40% {
+                    transform: rotate(-180deg);
+                }
+
+                78% {
+                    transform: rotate(-180deg);
+                }
+
+                95% {
+                    transform: rotate(-360deg);
+                }
+
+                98% {
+                    transform: rotate(-370deg);
+                }
+
+                100% {
+                    transform: rotate(-360deg);
+                }
+            }
+
+            @keyframes spin3 {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                27% {
+                    transform: rotate(0deg);
+                }
+
+                40% {
+                    transform: rotate(180deg);
+                }
+
+                45% {
+                    transform: rotate(190deg);
+                }
+
+                50% {
+                    transform: rotate(180deg);
+                }
+
+                62% {
+                    transform: rotate(180deg);
+                }
+
+                75% {
+                    transform: rotate(360deg);
+                }
+
+                80% {
+                    transform: rotate(370deg);
+                }
+
+                85% {
+                    transform: rotate(360deg);
+                }
+
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            @keyframes spin4 {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                38% {
+                    transform: rotate(0deg);
+                }
+
+                60% {
+                    transform: rotate(-360deg);
+                }
+
+                65% {
+                    transform: rotate(-370deg);
+                }
+
+                75% {
+                    transform: rotate(-360deg);
+                }
+
+                100% {
+                    transform: rotate(-360deg);
+                }
+            }
+        </style>
+
+        <div class="d-flex flex-column flex-grow-1">
+            <div class="content">
+                <div class="d-flex justify-space-around flex-grow-1 gap-10">
+                    <div class="loading">Loading</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="blazor-error-ui">
+        An unhandled error has occurred, please try reloading
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss"></a>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+    <script src="_content/BlazorGoogleMaps/js/objectManager.js"></script>
+
+    <!--<script src="_content/Fluxor.Blazor.Web/scripts/index.js"></script>-->
+    <!--<script>navigator.serviceWorker.register('service-worker.js');</script>-->
+    <script src="_content/Toolbelt.Blazor.PWA.Updater.Service/script.min.js"
+            no-register></script>
+    <script>
+        navigator.serviceWorker.register('service-worker.js').then(registration => {
+            Toolbelt.Blazor.PWA.Updater.handleRegistration(registration);
+        });
+    </script>
+    <script>
+        window.WriteCookie = {
+
+            WriteCookie: function (name, value, days) {
+
+                var expires;
+                if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = "; expires=" + date.toGMTString();
+                }
+                else {
+                    expires = "";
+                }
+                document.cookie = name + "=" + value + expires + "; path=/";
+            }
+        }
+        window.ReadCookie = {
+            ReadCookie: function (cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+        }
+        window.GetUrlDomain = {
+            GetUrlDomain: function () {
+                var brandUrl = "";
+                brandUrl = window.location.host;
+                brandUrl = brandUrl.replace(":", "");
+                return brandUrl;
+            }
+        }
+        function includeCss() {
+            var brandUrl = "";
+            brandUrl = window.location.host;
+            console.log(brandUrl);
+            var element = document.createElement("link");
+            element.setAttribute("rel", "stylesheet");
+            element.setAttribute("type", "text/css");
+            brandUrl = brandUrl.replace(":", "");
+
+            element.setAttribute("href", "themes/" + brandUrl + "/ColorCodes.css");
+            document.getElementsByTagName("head")[0].appendChild(element);
+        }
+        function saveToLocalstrorage(key, value) {
+            localStorage.setItem(key, value);
+        }
+        function getLocalstrorage(key) {
+            var x = localStorage.getItem(key);
+            return x;
+        }
+        function removeLocalStorage() {
+            localStorage.clear();
+
+            cookieStore.getAll().then(cookies => cookies.forEach(cookie => {
+                console.log('Cookie deleted:', cookie);
+                cookieStore.delete(cookie.name);
+            }));
+        }
+
+        function encodeUrl(urlString) {
+            let encoded = encodeURIComponent(urlString);
+            return encoded;
+        }
+
+        var primaryColor = 'rgba(7,112,180,1)';
+        var baseColor = '#ffffff';
+
+        var elements = document.getElementsByClassName('tg-loading');
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].style.backgroundImage = 'linear-gradient(-120deg,' + primaryColor + ' 50%,' + baseColor + ' 50%)';
+        }
+
+
+        function convertStreamToDataURL(stream) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(stream);
+            });
+        }
+
+        async function downloadFileFromStream(fileName, contentStreamReference) {
+            const arrayBuffer = await contentStreamReference.arrayBuffer();
+            const blob = new Blob([arrayBuffer]);
+            const url = URL.createObjectURL(blob);
+
+            triggerFileDownload(fileName, url);
+
+            URL.revokeObjectURL(url);
+        }
+
+        function triggerFileDownload(fileName, url) {
+            const anchorElement = document.createElement('a');
+            anchorElement.href = url;
+            anchorElement.target = "_blank";
+            anchorElement.download = fileName ?? '';
+            document.body.appendChild(anchorElement);
+            anchorElement.click();
+            document.body.removeChild(anchorElement);
+            //anchorElement.remove();
+        }
+
+    </script>
+
+    <script src="scripts/script.js"></script>
+</body>
+
+</html>
