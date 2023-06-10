@@ -69,7 +69,7 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-MmV8FkyakKIXMv3ItG\/p+U3tyvrLAukUUUK3n9dsSUk=",
+      "hash": "sha256-zkg89Hz8MToToyH0Uv3fmMa6ilhGaX1TJr0CLL1L3Jo=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -77,7 +77,7 @@
       "url": "_framework\/Blazored.LocalStorage.dll"
     },
     {
-      "hash": "sha256-7bpuelKFeIJdkEUmtNfmw\/f2Z1eQ6C9F25vpiO66qB4=",
+      "hash": "sha256-a9b+sbWxtGzJNV\/rOwzmA+WCqM\/7CD3996TNuYAoZVA=",
       "url": "_framework\/EDMS.DSM.Client.dll"
     },
     {
@@ -541,5 +541,5 @@
       "url": "_content\/Toolbelt.Blazor.PWA.Updater\/Toolbelt.Blazor.PWA.Updater.bundle.scp.css"
     }
   ],
-  "version": "4Vb2uZVg"
+  "version": "bB7fE6Al"
 };

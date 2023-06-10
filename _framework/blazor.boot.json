@@ -8,7 +8,7 @@
   "resources": {
     "assembly": {
       "Blazored.LocalStorage.dll": "sha256-eXVgTw72kEn74FZgDQbLtvAmXbiZDSj5gzUnxVmwowQ=",
-      "EDMS.DSM.Client.dll": "sha256-7bpuelKFeIJdkEUmtNfmw\/f2Z1eQ6C9F25vpiO66qB4=",
+      "EDMS.DSM.Client.dll": "sha256-a9b+sbWxtGzJNV\/rOwzmA+WCqM\/7CD3996TNuYAoZVA=",
       "EDMS.Shared.dll": "sha256-71rZqYuSb2Dj8q\/9YX5ysn\/ZMC1h9ihdkBKIrLd9no4=",
       "FluentValidation.dll": "sha256-AerL0YWVusUjQ161sI1tP5jyzULbGlkWMb3RFoodQ\/A=",
       "Fluxor.Blazor.Web.dll": "sha256-siW3UzNgUwWMV15Ax+syneIsmQ+Yj8DkKnd\/OltkGh0=",
