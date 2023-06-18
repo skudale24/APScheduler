@@ -9,10 +9,6 @@
       "url": "css\/app.min.css"
     },
     {
-      "hash": "sha256-Y82sHJNmfEX9+H5ZzhgDCyy\/O3yyp7MdGA5UJLTRZAo=",
-      "url": "data\/zipcodes.json"
-    },
-    {
       "hash": "sha256-9WIxB\/q1XWGbYCn8uyxgL3oUUx55oVg8trrydf8E1qM=",
       "url": "favicon.ico"
     },
@@ -549,5 +545,5 @@
       "url": "_content\/Toolbelt.Blazor.PWA.Updater\/Toolbelt.Blazor.PWA.Updater.bundle.scp.css"
     }
   ],
-  "version": "sPL7Sug4"
+  "version": "Qd6whLvp"
 };
